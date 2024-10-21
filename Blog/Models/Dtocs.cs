@@ -6,5 +6,6 @@
 
         public record UpdateBloggerDto(string Name, string Sex);
 
+        public record CreateBlogRegistry(string title ,string Description);
     }
 }

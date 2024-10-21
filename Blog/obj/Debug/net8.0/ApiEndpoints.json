@@ -78,6 +78,22 @@
   },
   {
     "ContainingType": "Blog.Controllers.BlogController",
+    "Method": "Delete",
+    "RelativePath": "blog",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Blog.Controllers.BlogController",
     "Method": "GetById",
     "RelativePath": "blog/{id}",
     "HttpMethod": "GET",

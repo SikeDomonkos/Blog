@@ -19,6 +19,8 @@ namespace Blog.Models
 
         }
         public DbSet<Blogger> Bloggers { get; set; } = null;
+
+        public DbSet<BlogRegistry> BlogRegostry { get; set; }
     }
 
     
