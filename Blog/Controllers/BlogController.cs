@@ -17,8 +17,11 @@ namespace Blog.Controllers
             {
                 return Ok(context.Bloggers.ToList());
             }
-                
+
         }
+
+
+
         [HttpGet("{id}")]
         public ActionResult<Blogger> GetById(Guid id)
         {
@@ -28,13 +31,13 @@ namespace Blog.Controllers
                 if (blogger != null)
                 {
                     return StatusCode(200, blogger);
-                } 
+                }
                 return NotFound();
             }
 
         }
         [HttpPost]
-        public ActionResult<Blogger> Post(CreateBloggerDto createBloggerDto) 
+        public ActionResult<Blogger> Post(CreateBloggerDto createBloggerDto)
         {
             using (var context = new BlogdbContext())
             {
@@ -57,7 +60,22 @@ namespace Blog.Controllers
 
             return Ok();
         }
-    }
 
-    
+        [HttpPut]
+        public ActionResult<Blogger> Put(Guid Id, UpdateBloggerDto updateBloggerDto)
+        {
+            using (var context = new BlogdbContext())
+            {
+                var existingBlogger = context.Bloggers.FirstOrDefault(x => x.Id == Id);
+                if (existingBlogger != null)
+                {
+                    existingBlogger.Name = updateBloggerDto.Name;
+                    context.Bloggers.Update(existingBlogger);
+                    context.SaveChanges();
+                    return StatusCode(200);
+                }
+                return Ok();
+            }
+        }
+    }
 }
