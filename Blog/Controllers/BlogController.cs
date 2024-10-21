@@ -75,7 +75,25 @@ namespace Blog.Controllers
                     return StatusCode(200);
                 }
                 return Ok();
+
             }
         }
+
+        [HttpDelete]
+        public ActionResult<object> Delete(Guid Id)
+        {
+            using (var context = new BlogdbContext())
+            {
+                var blogger = context.Bloggers.FirstOrDefault(x => x.Id == Id);
+                if (blogger != null)
+                {
+                    context.Bloggers.Remove(blogger);
+                    context.SaveChanges();
+                    return StatusCode(200, new { message = "Sikeres törlés." });
+                }
+                return NotFound(new { message = "Sikertelen törlés." });
+            }
+        }
+
     }
 }
